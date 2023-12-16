@@ -1,0 +1,16 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "*.html": "django-html",
+        "functional": "cpp",
+        "iostream": "cpp",
+        "*.tcc": "cpp",
+        "typeinfo": "cpp",
+        "system_error": "cpp",
+        "array": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "string": "cpp"
+    }
+}
