@@ -1,2 +1,0 @@
-C:/MinGW/bin/ar.exe qc libarguments.a CMakeFiles/arguments.dir/src/arguments.cpp.obj CMakeFiles/arguments.dir/src/argparser.cpp.obj
-C:/MinGW/bin/ranlib.exe libarguments.a
