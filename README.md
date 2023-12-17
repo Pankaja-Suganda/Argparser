@@ -22,7 +22,7 @@ To use ArgParser in your C++ project, follow these steps:
 1. Clone the ArgParser repository:
 
     ```bash
-    git clone https://github.com/yourusername/argparser.git
+    git clone https://github.com/Pankaja-Suganda/Argparser.git
     ```
 
 2. Include the `argparser` directory in your project.
