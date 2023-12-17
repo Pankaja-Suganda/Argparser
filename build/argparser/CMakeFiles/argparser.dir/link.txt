@@ -1,2 +1,0 @@
-C:/MinGW/bin/ar.exe qc libargparser.a CMakeFiles/argparser.dir/src/argparser.cpp.obj CMakeFiles/argparser.dir/src/argument.cpp.obj CMakeFiles/argparser.dir/src/argflag.cpp.obj CMakeFiles/argparser.dir/src/argint.cpp.obj CMakeFiles/argparser.dir/src/argdouble.cpp.obj CMakeFiles/argparser.dir/src/argstring.cpp.obj
-C:/MinGW/bin/ranlib.exe libargparser.a
