@@ -5,16 +5,13 @@
 
 class DoubleArgument : public Argument{
     public:
-        
         DoubleArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, double defaultval);
         ~DoubleArgument() = default;
 
         ArgStatus loadValue(const string& arg, int pos) override;
         ArgType getType() const override;
         
-        // int getValue() const override{
-        //     return value;
-        // }   
+        double getValue() const;
         
     private:
         double defaultvalue;

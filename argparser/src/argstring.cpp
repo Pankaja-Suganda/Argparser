@@ -3,7 +3,7 @@
 
 StringArgument::StringArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, const string& defaultval) 
     : Argument(_name, _shortcmd, _longcmd, _help, true), 
-        defaultvalue(defaultval){
+        defaultvalue(defaultval), value(defaultval){
 
 }
 
@@ -28,4 +28,8 @@ ArgStatus StringArgument::loadValue(const string& arg, int pos){
 
 ArgType StringArgument::getType() const{ 
     return ARG_STRING_TYPE;
+}
+
+string StringArgument::getValue() const{
+    return value;
 }

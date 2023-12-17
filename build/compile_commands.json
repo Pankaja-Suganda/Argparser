@@ -5,33 +5,78 @@
   "file": "D:/Projects/Argparser/main.cpp"
 },
 {
+  "directory": "D:/Projects/Argparser/build/test",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argflag_test.dir/includes_CXX.rsp -g -o CMakeFiles/argflag_test.dir/test_argflag.cpp.obj -c D:/Projects/Argparser/test/test_argflag.cpp",
+  "file": "D:/Projects/Argparser/test/test_argflag.cpp"
+},
+{
+  "directory": "D:/Projects/Argparser/build/test",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser_test.dir/includes_CXX.rsp -g -o CMakeFiles/argparser_test.dir/test_argparser.cpp.obj -c D:/Projects/Argparser/test/test_argparser.cpp",
+  "file": "D:/Projects/Argparser/test/test_argparser.cpp"
+},
+{
+  "directory": "D:/Projects/Argparser/build/test",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argint_test.dir/includes_CXX.rsp -g -o CMakeFiles/argint_test.dir/test_argint.cpp.obj -c D:/Projects/Argparser/test/test_argint.cpp",
+  "file": "D:/Projects/Argparser/test/test_argint.cpp"
+},
+{
+  "directory": "D:/Projects/Argparser/build/test",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argstring_test.dir/includes_CXX.rsp -g -o CMakeFiles/argstring_test.dir/test_argstring.cpp.obj -c D:/Projects/Argparser/test/test_argstring.cpp",
+  "file": "D:/Projects/Argparser/test/test_argstring.cpp"
+},
+{
+  "directory": "D:/Projects/Argparser/build/test",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argdouble_test.dir/includes_CXX.rsp -g -o CMakeFiles/argdouble_test.dir/test_argdouble.cpp.obj -c D:/Projects/Argparser/test/test_argdouble.cpp",
+  "file": "D:/Projects/Argparser/test/test_argdouble.cpp"
+},
+{
+  "directory": "D:/Projects/Argparser/build/_deps/googletest-build/googlemock",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/gmock.dir/includes_CXX.rsp -g -Wall -Wshadow -Werror -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock.dir/src/gmock-all.cc.obj -c D:/Projects/Argparser/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "file": "D:/Projects/Argparser/build/_deps/googletest-src/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "D:/Projects/Argparser/build/_deps/googletest-build/googlemock",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/gmock_main.dir/includes_CXX.rsp -g -Wall -Wshadow -Werror -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj -c D:/Projects/Argparser/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "file": "D:/Projects/Argparser/build/_deps/googletest-src/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "D:/Projects/Argparser/build/_deps/googletest-build/googletest",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/gtest.dir/includes_CXX.rsp -g -Wall -Wshadow -Werror -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gtest.dir/src/gtest-all.cc.obj -c D:/Projects/Argparser/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "file": "D:/Projects/Argparser/build/_deps/googletest-src/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "D:/Projects/Argparser/build/_deps/googletest-build/googletest",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/gtest_main.dir/includes_CXX.rsp -g -Wall -Wshadow -Werror -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj -c D:/Projects/Argparser/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "file": "D:/Projects/Argparser/build/_deps/googletest-src/googletest/src/gtest_main.cc"
+},
+{
   "directory": "D:/Projects/Argparser/build/argparser",
-  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -o CMakeFiles/argparser.dir/src/argparser.cpp.obj -c D:/Projects/Argparser/argparser/src/argparser.cpp",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -std=gnu++1z -o CMakeFiles/argparser.dir/src/argparser.cpp.obj -c D:/Projects/Argparser/argparser/src/argparser.cpp",
   "file": "D:/Projects/Argparser/argparser/src/argparser.cpp"
 },
 {
   "directory": "D:/Projects/Argparser/build/argparser",
-  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -o CMakeFiles/argparser.dir/src/argument.cpp.obj -c D:/Projects/Argparser/argparser/src/argument.cpp",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -std=gnu++1z -o CMakeFiles/argparser.dir/src/argument.cpp.obj -c D:/Projects/Argparser/argparser/src/argument.cpp",
   "file": "D:/Projects/Argparser/argparser/src/argument.cpp"
 },
 {
   "directory": "D:/Projects/Argparser/build/argparser",
-  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -o CMakeFiles/argparser.dir/src/argflag.cpp.obj -c D:/Projects/Argparser/argparser/src/argflag.cpp",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -std=gnu++1z -o CMakeFiles/argparser.dir/src/argflag.cpp.obj -c D:/Projects/Argparser/argparser/src/argflag.cpp",
   "file": "D:/Projects/Argparser/argparser/src/argflag.cpp"
 },
 {
   "directory": "D:/Projects/Argparser/build/argparser",
-  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -o CMakeFiles/argparser.dir/src/argint.cpp.obj -c D:/Projects/Argparser/argparser/src/argint.cpp",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -std=gnu++1z -o CMakeFiles/argparser.dir/src/argint.cpp.obj -c D:/Projects/Argparser/argparser/src/argint.cpp",
   "file": "D:/Projects/Argparser/argparser/src/argint.cpp"
 },
 {
   "directory": "D:/Projects/Argparser/build/argparser",
-  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -o CMakeFiles/argparser.dir/src/argdouble.cpp.obj -c D:/Projects/Argparser/argparser/src/argdouble.cpp",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -std=gnu++1z -o CMakeFiles/argparser.dir/src/argdouble.cpp.obj -c D:/Projects/Argparser/argparser/src/argdouble.cpp",
   "file": "D:/Projects/Argparser/argparser/src/argdouble.cpp"
 },
 {
   "directory": "D:/Projects/Argparser/build/argparser",
-  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -o CMakeFiles/argparser.dir/src/argstring.cpp.obj -c D:/Projects/Argparser/argparser/src/argstring.cpp",
+  "command": "C:/MinGW/bin/g++.exe  @CMakeFiles/argparser.dir/includes_CXX.rsp -g -std=gnu++1z -o CMakeFiles/argparser.dir/src/argstring.cpp.obj -c D:/Projects/Argparser/argparser/src/argstring.cpp",
   "file": "D:/Projects/Argparser/argparser/src/argstring.cpp"
 }
 ]

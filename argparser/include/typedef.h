@@ -13,6 +13,7 @@ typedef enum{
     PARSER_ARG_VALUE_NOT_FOUND = -3,
     PARSER_INVALID_ARGUMENT = -4,
     PARSER_OUT_OF_RANGE = -5,
+    PARSER_ADDING_FAILED = -6,
 
     /* redefinitions */
     PARSER_ARG_FOUND     = PARSER_OK,

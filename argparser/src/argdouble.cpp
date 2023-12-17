@@ -4,7 +4,7 @@
 
 DoubleArgument::DoubleArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, double defaultval) 
     : Argument(_name, _shortcmd, _longcmd, _help, true), 
-        defaultvalue(defaultval){
+        defaultvalue(defaultval), value(defaultval){
 
 }
 
@@ -33,4 +33,8 @@ ArgStatus DoubleArgument::loadValue(const string& arg, int pos){
 
 ArgType DoubleArgument::getType() const{ 
     return ARG_DOUBLE_TYPE;
+}
+
+double DoubleArgument::getValue() const{
+    return value;
 }

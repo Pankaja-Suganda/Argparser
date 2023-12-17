@@ -12,10 +12,8 @@ class StringArgument : public Argument{
         ArgStatus loadValue(const string& arg, int pos) override;
         ArgType getType() const override;
         
-        // int getValue() const override{
-        //     return value;
-        // }   
-        
+        string getValue() const;
+
     private:
         string defaultvalue;
         string value;

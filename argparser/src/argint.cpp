@@ -4,7 +4,7 @@
 
 IntArgument::IntArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, int defaultval) 
     : Argument(_name, _shortcmd, _longcmd, _help, true), 
-        defaultvalue(defaultval){
+        defaultvalue(defaultval), value(defaultval){
 
 }
 
@@ -33,4 +33,8 @@ ArgStatus IntArgument::loadValue(const string& arg, int pos){
 
 ArgType IntArgument::getType() const{ 
     return ARG_INT_TYPE;
+}
+
+int IntArgument::getValue() const{
+    return value;
 }

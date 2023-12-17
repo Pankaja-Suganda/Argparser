@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "typedef.h"
-#include "argument.h"
+#include <typedef.h>
+#include <argument.h>
 
 using namespace std;
 
@@ -18,26 +18,28 @@ public:
     template <typename T>
     ArgStatus addArgument(const string& name, const string& shortcmd, const string& longcmd, const string& help, T defaultval);
 
-    template <typename T>
-    void argprintf(T a);
+    template <typename V>
+    V get(const string& name);
+
     ArgStatus parse(int argc, char* argv[]);
     ArgStatus execute();
+
     Argument* find(const string &name);
+
     void print(){
         for (const auto& argument : args) {
             argument.second->print();
         }
     }
 
-    ArgStatus hasOption(const string& option) const;
-    map<string, Argument*> args;
+    bool argExists(const string &name) const;
+    
 private:
 
-    void precheck();
+    bool precheck(const string& name, const string& shortcmd, const string& longcmd);
     void postcheck();
 
-    
-    map<string, vector<string>> options;
+    map<string, Argument*> args;
 };
 
 #endif // !_ARGPARSER_H_

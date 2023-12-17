@@ -62,3 +62,6 @@ bool Argument::check(const string& arg) const{
 ArgStatus Argument::loadValue(const string& arg, int pos){
     return PARSER_OK;
 }
+
+
+

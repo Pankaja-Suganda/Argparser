@@ -11,6 +11,9 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "memory": "cpp",
+        "istream": "cpp"
     }
 }

@@ -10,8 +10,8 @@ class FlagArgument : public Argument{
 
         ArgStatus loadValue(const string& arg, int pos) override;
         ArgType getType() const override;
-        // int getValue() const override;
 
+        bool getValue() const;
 
     private:
         bool defaultvalue;

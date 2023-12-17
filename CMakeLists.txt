@@ -1,10 +1,22 @@
-cmake_minimum_required(VERSION 3.12)
-project(argument)
+cmake_minimum_required(VERSION 3.16)
+project(argparser)
 
 # Set the path to the Argparser module
 set(ARGPARSER_DIR "${CMAKE_CURRENT_SOURCE_DIR}/argparser")
+set(TEST_DIR      "${CMAKE_CURRENT_SOURCE_DIR}/test")
 
-# Add the Argparser module as a subdirectory
+set(TEST_ENABLE   ON)
+
+if(TEST_ENABLE)
+    # Add test-related configurations or dependencies here
+    message(STATUS "Testing is enabled.")
+    include(CTest)
+    enable_testing()
+    add_subdirectory(${TEST_DIR})
+endif()
+
+
+# Add the Argparser module as a subdirect ory
 add_subdirectory(${ARGPARSER_DIR})
 
 # Include directories for the current project

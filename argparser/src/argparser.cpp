@@ -12,6 +12,8 @@
 //     } while (0)
 
 #define VALIDATE_STRING(x)
+#define LONGCMD_STRING  "--"
+#define SHORTCMD_STRING '-'
 
 ArgParser::ArgParser() {
 
@@ -21,8 +23,28 @@ ArgParser::~ArgParser() {
 
 }
 
-void ArgParser::precheck(){
+bool ArgParser::precheck(
+    const string& name, 
+    const string& shortcmd, 
+    const string& longcmd) {
 
+    if(shortcmd[0] != SHORTCMD_STRING || shortcmd.length() != 2){
+        return false;
+    }
+
+    if(longcmd.substr(0, 2) != LONGCMD_STRING){
+        return false;
+    }
+
+    for (const auto& argument : args) {
+        if( argument.second->getName() == name || 
+            argument.second->getLongCmd()  == longcmd || 
+            argument.second->getShortCmd() == shortcmd) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void ArgParser::postcheck(){
@@ -43,9 +65,15 @@ ArgStatus ArgParser::addArgument<bool>(
     VALIDATE_STRING(longcmd);
     VALIDATE_STRING(help);
 
+    if (!precheck(name, shortcmd, longcmd)){
+        return PARSER_ADDING_FAILED;
+    }
+
     argument = new FlagArgument(name, shortcmd, longcmd, help, defaultval);
 
     args[name] = argument;
+
+    return PARSER_OK;
 }
 
 template <>
@@ -62,9 +90,15 @@ ArgStatus ArgParser::addArgument<int>(
     VALIDATE_STRING(longcmd);
     VALIDATE_STRING(help);
 
+    if (!precheck(name, shortcmd, longcmd)){
+        return PARSER_ADDING_FAILED;
+    }
+
     argument = new IntArgument(name, shortcmd, longcmd, help, defaultval);
 
     args[name] = argument;
+
+    return PARSER_OK;
 }
 
 template <>
@@ -81,9 +115,15 @@ ArgStatus ArgParser::addArgument<double>(
     VALIDATE_STRING(longcmd);
     VALIDATE_STRING(help);
 
+    if (!precheck(name, shortcmd, longcmd)){
+        return PARSER_ADDING_FAILED;
+    }
+
     argument = new DoubleArgument(name, shortcmd, longcmd, help, defaultval);
 
     args[name] = argument;
+
+    return PARSER_OK;
 }
 
 template <>
@@ -100,9 +140,15 @@ ArgStatus ArgParser::addArgument<char const*>(
     VALIDATE_STRING(longcmd);
     VALIDATE_STRING(help);
 
+    if (!precheck(name, shortcmd, longcmd)){
+        return PARSER_ADDING_FAILED;
+    }
+
     argument = new StringArgument(name, shortcmd, longcmd, help, defaultval);
 
     args[name] = argument;
+
+    return PARSER_OK;
 }
 
 Argument* ArgParser::find(const string &name){
@@ -121,6 +167,7 @@ ArgStatus ArgParser::parse(int argc, char* argv[]){
     for (int i = 0; i < argc; ++i) { 
         temp = find(argv[i]);
         if(temp != nullptr && !temp->status()) {
+
             if(temp->getType() == ARG_FLAG_TYPE){
                 ret = temp->loadValue(argv[i], i);
             }
@@ -139,13 +186,79 @@ ArgStatus ArgParser::parse(int argc, char* argv[]){
     return PARSER_OK;
 }
 
+bool ArgParser::argExists(const string &name) const{
+    auto temp =args.find(name);
 
-template <>
-void ArgParser::argprintf<int>(int a){
-    printf("here int\n");
+    if(temp != args.end()) {
+        return temp->second->status();
+    }
 }
 
 template <>
-void ArgParser::argprintf<double>(double a){
-    printf("here doule\n");
+int ArgParser::get<int>(const string& name) {
+    auto temp =args.find(name);
+
+    if(temp != args.end()) {
+        if(temp->second->getType() != ARG_INT_TYPE){
+            fprintf(stderr, "Error: no int argument for %s\n", name.c_str());
+        }
+        else{
+            return dynamic_cast<IntArgument*>(temp->second)->getValue();
+        }
+    }
+
+    return PARSER_ERROR;
 }
+
+template <>
+bool ArgParser::get<bool>(const string& name) {
+    auto temp =args.find(name);
+
+    if(temp != args.end()) {
+        if(temp->second->getType() != ARG_FLAG_TYPE){
+            fprintf(stderr, "Error: no bool argument for %s\n", name.c_str());
+        }
+        else{
+            return dynamic_cast<FlagArgument*>(temp->second)->getValue();
+        }
+    }
+
+    return PARSER_ERROR;
+}
+
+template <>
+double ArgParser::get<double>(const string& name) {
+    auto temp =args.find(name);
+
+    if(temp != args.end()) {
+        if(temp->second->getType() != ARG_DOUBLE_TYPE){
+            fprintf(stderr, "Error: no double argument for %s\n", name.c_str());
+        }
+        else{
+            return dynamic_cast<DoubleArgument*>(temp->second)->getValue();
+        }
+    }
+
+    return PARSER_ERROR;
+}
+
+template <>
+string ArgParser::get<string>(const string& name) {
+    auto temp =args.find(name);
+
+    if(temp != args.end()) {
+        if(temp->second->getType() != ARG_STRING_TYPE){
+            fprintf(stderr, "Error: no string argument for %s\n", name.c_str());
+        }
+        else{
+            return dynamic_cast<StringArgument*>(temp->second)->getValue();
+        }
+    }
+
+    return nullptr;
+}
+
+// template class ArgParser::get<int>;
+// template class ArgParser::get<bool>;
+// template class ArgParser::get<double>;
+// template class ArgParser::get<string>;

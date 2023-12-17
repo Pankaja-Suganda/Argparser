@@ -12,9 +12,7 @@ class IntArgument : public Argument{
         ArgStatus loadValue(const string& arg, int pos) override;
         ArgType getType() const override;
         
-        // int getValue() const override{
-        //     return value;
-        // }   
+        int getValue() const;
         
     private:
         int defaultvalue;

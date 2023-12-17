@@ -12,14 +12,12 @@ using namespace std;
 
 class Argument{
     public:
-        using CallbackFunction = function<void()>;
         Argument();
         Argument(const string& _name, const string& _shortcmd, const string& _longcmd, const string& _help, bool _hasvalue);
 
         // virtual ~Argument() = default;
         virtual ArgType getType() const = 0;
         virtual ArgStatus loadValue (const string& arg, int pos) ;
-        // virtual int getValue() const;
         
         bool status();
         bool check(const string& arg) const;
@@ -46,7 +44,6 @@ class Argument{
         string help;
         string shortcmd;
         string longcmd;
-        CallbackFunction callback_;
         bool existing;
         int argpos;
         bool hasvalue;
