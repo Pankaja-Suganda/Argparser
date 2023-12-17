@@ -37,6 +37,7 @@ class Argument{
         string getName() const;
         string getShortCmd() const;
         string getLongCmd() const;
+        string getHelp() const;
         void setArgPosition(int position);
     
     private:

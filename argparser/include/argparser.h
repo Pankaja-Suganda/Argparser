@@ -12,7 +12,10 @@ using namespace std;
 
 class ArgParser {
 public:
+    using Callback = std::function<void()>;
+
     ArgParser();
+    ArgParser(const string& _name, const string& _description);
     ~ArgParser();
 
     template <typename T>
@@ -33,13 +36,19 @@ public:
     }
 
     bool argExists(const string &name) const;
+    void setHelpCallback(const Callback& callback);
     
 private:
 
     bool precheck(const string& name, const string& shortcmd, const string& longcmd);
     void postcheck();
+    void help();
 
+    Callback help_callback;
     map<string, Argument*> args;
+
+    string name;
+    string description;
 };
 
 #endif // !_ARGPARSER_H_

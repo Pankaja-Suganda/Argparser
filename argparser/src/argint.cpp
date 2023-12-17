@@ -17,7 +17,6 @@ ArgStatus IntArgument::loadValue(const string& arg, int pos){
 
         try{
             value = stoi(arg);
-            printf("Int Value: %d\n", value);
             return PARSER_OK;
         } catch (const std::invalid_argument& e) {
             fprintf(stderr, "Error: %s is not a valid integer.\n", arg.c_str());

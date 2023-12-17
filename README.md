@@ -37,7 +37,10 @@ To use ArgParser in your C++ program, include the `argparser.h` header file and 
 #include <argparser.h>
 
 int main(int argc, char* argv[]) {
-    ArgParser parser;
+    ArgParser parser(
+        "Argument Parser v1.1",                                      // Project name
+        "This project can be used to parse command line arguments"   // Description
+    );
 
     // Add arguments
     parser.addArgument("boolArg",   "-b", "--bool",   "Bool argument",   false);
@@ -56,6 +59,53 @@ int main(int argc, char* argv[]) {
 
     // Use retrieved values in your program logic
 
+    return 0;
+}
+```
+
+## Help Command
+To display help information, use the following commands:
+
+```cmd
+./<exe-name>.exe -h 
+```
+or
+```cmd
+./<exe-name>.exe --help
+```
+
+Upon execution, it will output:
+```
+Argument Parser v1.1
+
+DESCRIPTION:
+        This project can be used to parse command line arguments
+USAGE:
+        -b, --bool      : This is a flag argument
+        -d, --double    : This is a double argument
+        -i, --int       : This is a int argument
+        -s, --string    : This is a string argument
+```
+Replace `<exe-name>` with the actual name of your executable. This section provides a quick guide on how users can access `help` information along with an example output showcasing the available command-line arguments.
+
+Otherthan that user can add own help command with built-in help command, then the user specified function will execute before `help` command.
+
+```cpp
+// Example user-specified callback
+void userSpecifiedCallback() {
+    printf("Executing user-specified callback before the built-in help command.");
+}
+
+int main(int argc, char* argv[]) {
+    ArgParser parser;
+
+    // Set user-specified callback for help
+    parser.setHelpCallback(userSpecifiedCallback);
+
+    // Parse command-line arguments
+    parser.parse(argc, argv);
+
+    // ... rest of the program
     return 0;
 }
 ```

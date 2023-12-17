@@ -40,6 +40,10 @@ string Argument::getLongCmd() const {
     return longcmd;
 }
 
+string Argument::getHelp() const {
+    return help;
+}
+
 void Argument::setArgPosition(int position){
     argpos = position;
 }

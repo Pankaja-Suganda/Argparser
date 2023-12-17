@@ -3,6 +3,7 @@
 #include <argint.h>
 #include <argdouble.h>
 #include <argstring.h>
+#include <string.h>
 // #define VALIDATE_STRING(x) \
 //     do { \
 //         if (x.empty()) { \
@@ -14,8 +15,20 @@
 #define VALIDATE_STRING(x)
 #define LONGCMD_STRING  "--"
 #define SHORTCMD_STRING '-'
+#define LONG_HELPCMD    "--help"
+#define SHORT_HELPCMD   "-h"
 
-ArgParser::ArgParser() {
+#define DEFAULT_PARSER_NAME        "Default Project Name"
+#define DEFAULT_PARSER_DESCRIPTION "Default Project Description"
+
+
+ArgParser::ArgParser()
+    : name(DEFAULT_PARSER_NAME), description(DEFAULT_PARSER_DESCRIPTION){
+
+}
+
+ArgParser::ArgParser(const string& _name, const string& _description)
+    : name(_name), description(_description){
 
 }
 
@@ -36,6 +49,10 @@ bool ArgParser::precheck(
         return false;
     }
 
+    if(longcmd == LONG_HELPCMD || shortcmd == SHORT_HELPCMD){
+        return false;
+    }
+
     for (const auto& argument : args) {
         if( argument.second->getName() == name || 
             argument.second->getLongCmd()  == longcmd || 
@@ -49,6 +66,30 @@ bool ArgParser::precheck(
 
 void ArgParser::postcheck(){
 
+}
+
+void ArgParser::help(){
+
+    if (help_callback) {
+        help_callback();
+    }
+
+    printf("%s\n\n", name.c_str());
+    printf("DESCRIPTION:\n\t%s\n", description.c_str());
+
+    printf("USAGE:\n");
+    for (const auto& argument : args) {
+        printf("\t%s, %s \t: %s\n", 
+            argument.second->getShortCmd().c_str(), 
+            argument.second->getLongCmd().c_str(),
+            argument.second->getHelp().c_str());
+    }
+
+    printf("\n");
+}
+
+void ArgParser::setHelpCallback(const Callback& callback){
+    help_callback = callback;
 }
 
 template <>
@@ -163,6 +204,11 @@ Argument* ArgParser::find(const string &name){
 ArgStatus ArgParser::parse(int argc, char* argv[]){
     Argument* temp = nullptr;
     ArgStatus ret = PARSER_ERROR;
+
+    if(strcmp(argv[1], LONG_HELPCMD) == PARSER_OK || strcmp(argv[1], SHORT_HELPCMD) == PARSER_OK){
+        help();
+        return PARSER_OK;
+    }
 
     for (int i = 0; i < argc; ++i) { 
         temp = find(argv[i]);

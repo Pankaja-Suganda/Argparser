@@ -17,7 +17,6 @@ ArgStatus DoubleArgument::loadValue(const string& arg, int pos){
 
         try{
             value = stod(arg);
-            printf("Float Value: %f\n", value);
             return PARSER_OK;
         } catch (const std::invalid_argument& e) {
             fprintf(stderr, "Error: %s is not a valid float.\n", arg.c_str());

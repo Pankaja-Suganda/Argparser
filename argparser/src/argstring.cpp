@@ -16,7 +16,6 @@ ArgStatus StringArgument::loadValue(const string& arg, int pos){
 
         if(!arg.empty()){
             value = arg;
-            printf("String Value: %s\n", value.c_str());
         }
         else{
             return PARSER_INVALID_ARGUMENT;
