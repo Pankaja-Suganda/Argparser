@@ -88,6 +88,10 @@ void ArgParser::help(){
     printf("\n");
 }
 
+void ArgParser::disableDefaultHelp(){
+    defaultHelp = false;
+}
+
 void ArgParser::setHelpCallback(const Callback& callback){
     help_callback = callback;
 }
@@ -203,23 +207,27 @@ Argument* ArgParser::find(const string &name){
 
 ArgStatus ArgParser::parse(int argc, char* argv[]){
     Argument* temp = nullptr;
-    ArgStatus ret = PARSER_ERROR;
+    Argument* prev = nullptr;
+    ArgStatus ret = PARSER_OK;
 
-    if(strcmp(argv[1], LONG_HELPCMD) == PARSER_OK || strcmp(argv[1], SHORT_HELPCMD) == PARSER_OK){
-        help();
-        return PARSER_OK;
+    if(defaultHelp){
+        if(strcmp(argv[1], LONG_HELPCMD) == PARSER_OK || strcmp(argv[1], SHORT_HELPCMD) == PARSER_OK){
+            help();
+            return PARSE_DEFAULT_HELP_OK;
+        }       
     }
 
-    for (int i = 0; i < argc; ++i) { 
+
+    for (int i = 1; i < argc; ++i) { 
         temp = find(argv[i]);
-        if(temp != nullptr && !temp->status()) {
+        if(temp != nullptr && !temp->status() && ret == PARSER_OK) {
 
             if(temp->getType() == ARG_FLAG_TYPE){
                 ret = temp->loadValue(argv[i], i);
             }
             else{
                 if(i + 1 < argc){
-                    ret = temp->loadValue(argv[i+1], i);
+                    ret = temp->loadValue(argv[i+1], i + 1);
                 }
                 else{
                     fprintf(stderr, "Error: no argument for %s\n", argv[i]);
@@ -227,9 +235,19 @@ ArgStatus ArgParser::parse(int argc, char* argv[]){
                 }
             }
         }
+        else{
+            if((prev != nullptr && !(prev->getHasValue())) || 
+               (temp == nullptr && prev == nullptr)   || 
+                i == 1){
+                fprintf(stderr, "Error: Unknown argument %s\n", argv[i]);
+                ret = PARSER_ARG_UNKNOWN;
+            }
+        }
+
+        prev = temp;
     }
 
-    return PARSER_OK;
+    return ret;
 }
 
 bool ArgParser::argExists(const string &name) const{

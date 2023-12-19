@@ -38,26 +38,44 @@ To use ArgParser in your C++ program, include the `argparser.h` header file and 
 
 int main(int argc, char* argv[]) {
     ArgParser parser(
-        "Argument Parser v1.1",                                      // Project name
-        "This project can be used to parse command line arguments"   // Description
+        "Box Volume Calculator",                      // Project name
+        "Calculate the volume of a rectangular box"   // Description
     );
 
-    // Add arguments
-    parser.addArgument("boolArg",   "-b", "--bool",   "Bool argument",   false);
-    parser.addArgument("intArg",    "-i", "--int",    "Int argument",    12);
-    parser.addArgument("doubleArg", "-d", "--double", "Double argument", 12.23);
-    parser.addArgument("strArg",    "-s", "--string", "String argument", "default");
+    // Add arguments for the dimensions of the box and verbose mode
+    parser.addArgument("length",   "-l", "--length",  "Length of the box",     0.0);
+    parser.addArgument("width",    "-w", "--width",   "Int of the box",        0.0);
+    parser.addArgument("depth",    "-d", "--depth",   "Depth of the box",      0.0);
+    parser.addArgument("verbose",  "-v", "--verbose", "Enable verbose output", false);
 
     // Parse command-line arguments
     parser.parse(argc, argv);
 
-    // Retrieve values 
-    bool boolValue          = parser.get<bool>("boolArg");
-    int intValue            = parser.get<int>("intArg");
-    double doubleValue      = parser.get<double>("doubleArg");
-    std::string stringValue = parser.get<std::string>("strArg");
+    // checking whether the default help is triggered
+    if(ret == PARSE_DEFAULT_HELP_OK){
+        return 0;
+    }
 
-    // Use retrieved values in your program logic
+    if(ret < PARSER_OK){
+        printf("Error: Error occured (%d)\n", ret);
+        return 1; // Return non-zero to indicate an error
+    }
+
+    // Retrieve values 
+    double length = parser.get<double>("length");
+    double width  = parser.get<double>("width");
+    double depth  = parser.get<double>("depth");
+    bool verbose  = parser.get<bool>("verbose");
+
+    if (parser.argExists("length") && parser.argExists("width") && parser.argExists("depth")) {
+        if (verbose) {
+            printf("Dimensions: %.2f X %.2f X %.2f\n", height, width, depth);
+        } 
+
+        // Use retrieved values in your program logic
+
+        // Calculate the volume of the box!!
+    }
 
     return 0;
 }
@@ -76,19 +94,19 @@ or
 
 Upon execution, it will output:
 ```
-Argument Parser v1.1
+Box Volume Calculator
 
 DESCRIPTION:
-        This project can be used to parse command line arguments
+        Calculate the volume of a rectangular box
 USAGE:
-        -b, --bool      : This is a flag argument
-        -d, --double    : This is a double argument
-        -i, --int       : This is a int argument
-        -s, --string    : This is a string argument
+        -d, --depth     : Depth of the box       
+        -l, --length    : Length of the box
+        -v, --verbose   : Enable verbose output
+        -w, --width     : Width of the box
 ```
 Replace `<exe-name>` with the actual name of your executable. This section provides a quick guide on how users can access `help` information along with an example output showcasing the available command-line arguments.
 
-Otherthan that user can add own help command with built-in help command, then the user specified function will execute before `help` command.
+Other than that user can add own help command with built-in help command, then the user specified function will execute before `help` command. 
 
 ```cpp
 // Example user-specified callback
