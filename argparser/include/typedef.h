@@ -6,6 +6,7 @@
 typedef enum{
     /* success status*/
     PARSER_OK  = 0,
+    PARSE_DEFAULT_HELP_OK = 1,
 
     /* error status*/
     PARSER_ERROR = -1,
@@ -14,10 +15,11 @@ typedef enum{
     PARSER_INVALID_ARGUMENT = -4,
     PARSER_OUT_OF_RANGE = -5,
     PARSER_ADDING_FAILED = -6,
+    PARSER_ARG_UNKNOWN = -7,
 
     /* redefinitions */
     PARSER_ARG_FOUND     = PARSER_OK,
-    PARSER_ARG_NOT_FOUND = PARSER_ERROR,
+    PARSER_ARG_NOT_FOUND = PARSER_ERROR
 } ArgStatus;
 
 typedef enum{

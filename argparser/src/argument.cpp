@@ -48,7 +48,7 @@ void Argument::setArgPosition(int position){
     argpos = position;
 }
 
-bool Argument::status(){
+bool Argument::status() const{
     return existing;
 }
 
@@ -67,5 +67,8 @@ ArgStatus Argument::loadValue(const string& arg, int pos){
     return PARSER_OK;
 }
 
+bool Argument::getHasValue() const{
+    return hasvalue;
+}
 
 

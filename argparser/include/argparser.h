@@ -25,7 +25,7 @@ public:
     V get(const string& name);
 
     ArgStatus parse(int argc, char* argv[]);
-    ArgStatus execute();
+    ArgStatus execute(); 
 
     Argument* find(const string &name);
 
@@ -37,6 +37,7 @@ public:
 
     bool argExists(const string &name) const;
     void setHelpCallback(const Callback& callback);
+    void disableDefaultHelp();
     
 private:
 
@@ -49,6 +50,8 @@ private:
 
     string name;
     string description;
+
+    bool defaultHelp = true;
 };
 
 #endif // !_ARGPARSER_H_

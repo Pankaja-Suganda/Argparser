@@ -15,11 +15,11 @@ class Argument{
         Argument();
         Argument(const string& _name, const string& _shortcmd, const string& _longcmd, const string& _help, bool _hasvalue);
 
-        // virtual ~Argument() = default;
+        virtual ~Argument() = default;
         virtual ArgType getType() const = 0;
         virtual ArgStatus loadValue (const string& arg, int pos) ;
         
-        bool status();
+        bool status() const;
         bool check(const string& arg) const;
         void found();
         void print() {
@@ -39,6 +39,7 @@ class Argument{
         string getLongCmd() const;
         string getHelp() const;
         void setArgPosition(int position);
+        bool getHasValue() const;
     
     private:
         string name;

@@ -1,43 +1,59 @@
-#include <cstdio>
+#include <iostream>
+#include <cmath>
 #include <argparser.h>
-using namespace std;
 
+// Function to calculate the volume of a rectangular box given its dimensions
+double calculateBoxVolume(double length, double width, double depth) {
+    return length * width * depth;
+}
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]) {
+    ArgStatus ret = PARSER_ERROR;
     ArgParser parser(
-        "Argument Parser v1.1",                                      // Project name
-        "This project can be used to parse command line arguments"   // Description
+        "Box Volume Calculator",                       // Project name
+        "Calculate the volume of a rectangular box"    // Description
     );
 
-    // char* sargv[] = { (char*)"program_name", 
-    //     (char*)"--int", (char*)"123",             // Int Argument
-    //     (char*)"--string", (char*)"Hello World",  // String Argument
-    //     (char*)"--bool",                          // Bool Argument
-    //     (char*)"--double", (char*)"65.343"};      // Double Argument
-    char* sargv[] = { (char*)"program_name",  (char*)"-h"};
-    int sargc = sizeof(sargv) / sizeof(sargv[0]);
+    // Add arguments for the dimensions of the box and verbose mode
+    parser.addArgument("length",  "-l", "--length",  "Height of the box",     0.0);
+    parser.addArgument("width",   "-w", "--width",   "Width of the box",      0.0);
+    parser.addArgument("depth",   "-d", "--depth",   "Depth of the box",      0.0);
+    parser.addArgument("verbose", "-v", "--verbose", "Enable verbose output", false);
 
+    // Parse command-line arguments
+    ret = parser.parse(argc, argv);
 
-    parser.addArgument("bool",  "-b", "--bool",  "This is a flag argument",   false);
-    parser.addArgument("int",    "-i", "--int",    "This is a int argument",    10);
-    parser.addArgument("double", "-d", "--double", "This is a double argument", 0.0);
-    parser.addArgument("string", "-s", "--string", "This is a string argument", "null");
-    parser.parse(argc, argv);
-    //parser.print();
+    // checking whether the default help is triggered
+    if(ret == PARSE_DEFAULT_HELP_OK){
+        return 0;
+    }
 
-    auto intValue = parser.get<int>("int");
-    auto doubleValue = parser.get<double>("double");
-    auto stringValue = parser.get<string>("string");
+    if(ret < PARSER_OK){
+        printf("Error: Error occured (%d)\n", ret);
+        return 1; // Return non-zero to indicate an error
+    }
 
+    // Retrieve values
+    double length = parser.get<double>("length");
+    double width  = parser.get<double>("width");
+    double depth  = parser.get<double>("depth");
+    bool verbose  = parser.get<bool>("verbose");
 
-    // printf("Int Value : %d\n", intValue);
-    // printf("Double Value : %f\n", doubleValue);
-    // printf("String Value : %s\n", stringValue.c_str());
+    // Check if the provided dimensions are valid
+    if (parser.argExists("length") && parser.argExists("width") && parser.argExists("depth")) {
+        // Calculate the volume of the box
+        double volume = calculateBoxVolume(length, width, depth);
 
-    // if(parser.argExists("debug")){
-    //     printf("debug is there\n");
-    // }
-    // else{
-    //     printf("debug is not there\n");
-    // }
+        // Display the result based on verbose mode 
+        if (verbose) {
+            printf("Dimensions: %.2f X %.2f X %.2f\n", length, width, depth);
+        } 
+
+        printf("Volume of the box: %.2f" , volume);
+    } else {
+        printf("Error: Invalid dimensions. All dimensions must be included.");
+        return 1; // Return non-zero to indicate an error
+    }
+
+    return 0;
 }
