@@ -15,10 +15,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install CMake
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake
+    - name: Set up CMake
+      uses: cmake/setup-cmake@v2
+      with:
+        cmake-version: '3.15'
 
     - name: Create build directory
       run: mkdir build
