@@ -2,6 +2,9 @@
 
 ArgParser is a simple C++ library for parsing command-line arguments with support for various data types.
 
+[![C/C++ CI](https://github.com/Pankaja-Suganda/Argparser/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/Pankaja-Suganda/Argparser/actions/workflows/c-cpp.yml)
+[![CodeQL](https://github.com/Pankaja-Suganda/Argparser/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/Pankaja-Suganda/Argparser/actions/workflows/github-code-scanning/codeql)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
