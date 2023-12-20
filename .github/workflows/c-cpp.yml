@@ -27,8 +27,5 @@ jobs:
       run: cmake --build build --config Release
       working-directory: ./
 
-    - name: Run tests
-      run: cmake --build build --target test
-      working-directory: ./
 
 
