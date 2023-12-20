@@ -12,12 +12,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up CMake
+      uses: actions/setup-cmake@v2
+      with:
+        cmake-version: 3.20
+
+    - name: Create build directory
+      run: mkdir build
+      working-directory: ./
+
+    - name: Configure CMake
+      run: cmake -Bbuild -S. -DCMAKE_BUILD_TYPE=Release
+      working-directory: ./
+
+    - name: Build project
+      run: cmake --build build --config Release
+      working-directory: ./
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run tests
+      run: cmake --build build --target test
+      working-directory: ./
