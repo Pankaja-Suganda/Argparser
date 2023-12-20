@@ -15,11 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install CMake
-      uses: cmake/install-cmake@v1
-      with:
-        cmake-version: 3.15
-
     - name: Create build directory
       run: mkdir build
       working-directory: ./
