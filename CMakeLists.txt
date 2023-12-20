@@ -5,7 +5,7 @@ project(argparser)
 set(ARGPARSER_DIR "${CMAKE_CURRENT_SOURCE_DIR}/argparser")
 set(TEST_DIR      "${CMAKE_CURRENT_SOURCE_DIR}/test")
 
-set(TEST_ENABLE   OFF)
+set(TEST_ENABLE   ON)
 
 if(TEST_ENABLE)
     # Add test-related configurations or dependencies here
