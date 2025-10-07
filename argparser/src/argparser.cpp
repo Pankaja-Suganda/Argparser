@@ -196,6 +196,31 @@ ArgStatus ArgParser::addArgument<char const*>(
     return PARSER_OK;
 }
 
+template <>
+ArgStatus ArgParser::addArgument<std::string>(
+    const std::string& name,
+    const std::string& shortcmd,
+    const std::string& longcmd,
+    const std::string& help,
+    std::string defaultval) {
+    Argument *argument = nullptr;
+
+    VALIDATE_STRING(name);
+    VALIDATE_STRING(shortcmd);
+    VALIDATE_STRING(longcmd);
+    VALIDATE_STRING(help);
+
+    if (!precheck(name, shortcmd, longcmd)){
+        return PARSER_ADDING_FAILED;
+    }
+
+    argument = new StringArgument(name, shortcmd, longcmd, help, defaultval);
+
+    args[name] = argument;
+
+    return PARSER_OK;
+}
+
 Argument* ArgParser::find(const std::string &name){
     for (const auto& argument : args) {
         if(argument.second->check(name)){
