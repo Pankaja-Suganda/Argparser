@@ -17,7 +17,7 @@ Argument::Argument()
 
 }
 
-Argument::Argument(const string& _name, const string& _shortcmd, const string& _longcmd, const string& _help, bool _hasvalue)
+Argument::Argument(const std::string& _name, const std::string& _shortcmd, const std::string& _longcmd, const std::string& _help, bool _hasvalue)
     :   name(_name), 
         shortcmd(_shortcmd), 
         longcmd(_longcmd), 
@@ -28,19 +28,19 @@ Argument::Argument(const string& _name, const string& _shortcmd, const string& _
 
 }
 
-string Argument::getName() const {
+std::string Argument::getName() const {
     return name;
 }
 
-string Argument::getShortCmd() const {
+std::string Argument::getShortCmd() const {
     return shortcmd;
 }
 
-string Argument::getLongCmd() const {
+std::string Argument::getLongCmd() const {
     return longcmd;
 }
 
-string Argument::getHelp() const {
+std::string Argument::getHelp() const {
     return help;
 }
 
@@ -56,14 +56,14 @@ void Argument::found(){
     existing = true;
 }
 
-bool Argument::check(const string& arg) const{
+bool Argument::check(const std::string& arg) const{
     if (shortcmd == arg || longcmd == arg) {
         return true;
     }
     return false;
 }
 
-ArgStatus Argument::loadValue(const string& arg, int pos){
+ArgStatus Argument::loadValue(const std::string& arg, int pos){
     return PARSER_OK;
 }
 

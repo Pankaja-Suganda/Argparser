@@ -5,10 +5,10 @@
 
 class FlagArgument : public Argument{
     public:
-        FlagArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, bool defaultval);
+        FlagArgument(const std::string& _name, const std::string& _shortcmd,  const std::string& _longcmd, const std::string& _help, bool defaultval);
         ~FlagArgument() = default;
 
-        ArgStatus loadValue(const string& arg, int pos) override;
+        ArgStatus loadValue(const std::string& arg, int pos) override;
         ArgType getType() const override;
 
         bool getValue() const;

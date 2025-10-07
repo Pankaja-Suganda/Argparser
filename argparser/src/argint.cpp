@@ -2,13 +2,13 @@
 #include <typedef.h>
 #include <stdexcept>
 
-IntArgument::IntArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, int defaultval) 
+IntArgument::IntArgument(const std::string& _name, const std::string& _shortcmd,  const std::string& _longcmd, const std::string& _help, int defaultval) 
     : Argument(_name, _shortcmd, _longcmd, _help, true), 
         defaultvalue(defaultval), value(defaultval){
 
 }
 
-ArgStatus IntArgument::loadValue(const string& arg, int pos){
+ArgStatus IntArgument::loadValue(const std::string& arg, int pos){
 
     found();
 

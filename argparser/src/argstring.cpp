@@ -1,13 +1,13 @@
 #include <argstring.h>
 #include <typedef.h>
 
-StringArgument::StringArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, const string& defaultval) 
+StringArgument::StringArgument(const std::string& _name, const std::string& _shortcmd,  const std::string& _longcmd, const std::string& _help, const std::string& defaultval) 
     : Argument(_name, _shortcmd, _longcmd, _help, true), 
         defaultvalue(defaultval), value(defaultval){
 
 }
 
-ArgStatus StringArgument::loadValue(const string& arg, int pos){
+ArgStatus StringArgument::loadValue(const std::string& arg, int pos){
 
     found();
 
@@ -29,6 +29,6 @@ ArgType StringArgument::getType() const{
     return ARG_STRING_TYPE;
 }
 
-string StringArgument::getValue() const{
+std::string StringArgument::getValue() const{
     return value;
 }

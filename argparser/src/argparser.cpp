@@ -7,7 +7,7 @@
 // #define VALIDATE_STRING(x) \
 //     do { \
 //         if (x.empty()) { \
-//             std::cerr << "Error: Empty string passed to " << #x << std::endl; \
+//             std::cerr << "Error: Empty std::string passed to " << #x << std::endl; \
 //             return PARSER_INPUT_VALID_ERROR;\
 //         } \
 //     } while (0)
@@ -27,7 +27,7 @@ ArgParser::ArgParser()
 
 }
 
-ArgParser::ArgParser(const string& _name, const string& _description)
+ArgParser::ArgParser(const std::string& _name, const std::string& _description)
     : name(_name), description(_description){
 
 }
@@ -37,9 +37,9 @@ ArgParser::~ArgParser() {
 }
 
 bool ArgParser::precheck(
-    const string& name, 
-    const string& shortcmd, 
-    const string& longcmd) {
+    const std::string& name, 
+    const std::string& shortcmd, 
+    const std::string& longcmd) {
 
     if(shortcmd[0] != SHORTCMD_STRING || shortcmd.length() != 2){
         return false;
@@ -98,10 +98,10 @@ void ArgParser::setHelpCallback(const Callback& callback){
 
 template <>
 ArgStatus ArgParser::addArgument<bool>(
-    const string& name, 
-    const string& shortcmd, 
-    const string& longcmd, 
-    const string& help, 
+    const std::string& name, 
+    const std::string& shortcmd, 
+    const std::string& longcmd, 
+    const std::string& help, 
     bool defaultval){
     Argument *argument = nullptr;
 
@@ -123,10 +123,10 @@ ArgStatus ArgParser::addArgument<bool>(
 
 template <>
 ArgStatus ArgParser::addArgument<int>(
-    const string& name, 
-    const string& shortcmd, 
-    const string& longcmd, 
-    const string& help, 
+    const std::string& name, 
+    const std::string& shortcmd, 
+    const std::string& longcmd, 
+    const std::string& help, 
     int defaultval){
     Argument *argument = nullptr;
 
@@ -148,10 +148,10 @@ ArgStatus ArgParser::addArgument<int>(
 
 template <>
 ArgStatus ArgParser::addArgument<double>(
-    const string& name, 
-    const string& shortcmd, 
-    const string& longcmd, 
-    const string& help, 
+    const std::string& name, 
+    const std::string& shortcmd, 
+    const std::string& longcmd, 
+    const std::string& help, 
     double defaultval){
     Argument *argument = nullptr;
 
@@ -173,10 +173,10 @@ ArgStatus ArgParser::addArgument<double>(
 
 template <>
 ArgStatus ArgParser::addArgument<char const*>(
-    const string& name, 
-    const string& shortcmd, 
-    const string& longcmd, 
-    const string& help, 
+    const std::string& name, 
+    const std::string& shortcmd, 
+    const std::string& longcmd, 
+    const std::string& help, 
     const char* defaultval){
     Argument *argument = nullptr;
 
@@ -196,7 +196,7 @@ ArgStatus ArgParser::addArgument<char const*>(
     return PARSER_OK;
 }
 
-Argument* ArgParser::find(const string &name){
+Argument* ArgParser::find(const std::string &name){
     for (const auto& argument : args) {
         if(argument.second->check(name)){
             return argument.second;
@@ -250,16 +250,18 @@ ArgStatus ArgParser::parse(int argc, char* argv[]){
     return ret;
 }
 
-bool ArgParser::argExists(const string &name) const{
+bool ArgParser::argExists(const std::string &name) const{
     auto temp =args.find(name);
 
     if(temp != args.end()) {
         return temp->second->status();
     }
+
+    return false;
 }
 
 template <>
-int ArgParser::get<int>(const string& name) {
+int ArgParser::get<int>(const std::string& name) {
     auto temp =args.find(name);
 
     if(temp != args.end()) {
@@ -275,7 +277,7 @@ int ArgParser::get<int>(const string& name) {
 }
 
 template <>
-bool ArgParser::get<bool>(const string& name) {
+bool ArgParser::get<bool>(const std::string& name) {
     auto temp =args.find(name);
 
     if(temp != args.end()) {
@@ -291,7 +293,7 @@ bool ArgParser::get<bool>(const string& name) {
 }
 
 template <>
-double ArgParser::get<double>(const string& name) {
+double ArgParser::get<double>(const std::string& name) {
     auto temp =args.find(name);
 
     if(temp != args.end()) {
@@ -307,12 +309,12 @@ double ArgParser::get<double>(const string& name) {
 }
 
 template <>
-string ArgParser::get<string>(const string& name) {
+std::string ArgParser::get<std::string>(const std::string& name) {
     auto temp =args.find(name);
 
     if(temp != args.end()) {
         if(temp->second->getType() != ARG_STRING_TYPE){
-            fprintf(stderr, "Error: no string argument for %s\n", name.c_str());
+            fprintf(stderr, "Error: no std::string argument for %s\n", name.c_str());
         }
         else{
             return dynamic_cast<StringArgument*>(temp->second)->getValue();
@@ -325,4 +327,4 @@ string ArgParser::get<string>(const string& name) {
 // template class ArgParser::get<int>;
 // template class ArgParser::get<bool>;
 // template class ArgParser::get<double>;
-// template class ArgParser::get<string>;
+// template class ArgParser::get<std::string>;

@@ -6,17 +6,17 @@
 class StringArgument : public Argument{
     public:
         
-        StringArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, const string& defaultval);
+        StringArgument(const std::string& _name, const std::string& _shortcmd,  const std::string& _longcmd, const std::string& _help, const std::string& defaultval);
         ~StringArgument() = default;
 
-        ArgStatus loadValue(const string& arg, int pos) override;
+        ArgStatus loadValue(const std::string& arg, int pos) override;
         ArgType getType() const override;
-        
-        string getValue() const;
+
+        std::string getValue() const;
 
     private:
-        string defaultvalue;
-        string value;
+        std::string defaultvalue;
+        std::string value;
 };
 
 #endif // !_ARGSTRING_H_

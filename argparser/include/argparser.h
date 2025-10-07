@@ -7,27 +7,24 @@
 #include <typedef.h>
 #include <argument.h>
 
-using namespace std;
-
-
 class ArgParser {
 public:
     using Callback = std::function<void()>;
 
     ArgParser();
-    ArgParser(const string& _name, const string& _description);
+    ArgParser(const std::string& _name, const std::string& _description);
     ~ArgParser();
 
     template <typename T>
-    ArgStatus addArgument(const string& name, const string& shortcmd, const string& longcmd, const string& help, T defaultval);
+    ArgStatus addArgument(const std::string& name, const std::string& shortcmd, const std::string& longcmd, const std::string& help, T defaultval);
 
     template <typename V>
-    V get(const string& name);
+    V get(const std::string& name);
 
     ArgStatus parse(int argc, char* argv[]);
     ArgStatus execute(); 
 
-    Argument* find(const string &name);
+    Argument* find(const std::string &name);
 
     void print(){
         for (const auto& argument : args) {
@@ -35,21 +32,21 @@ public:
         }
     }
 
-    bool argExists(const string &name) const;
+    bool argExists(const std::string &name) const;
     void setHelpCallback(const Callback& callback);
     void disableDefaultHelp();
     
 private:
 
-    bool precheck(const string& name, const string& shortcmd, const string& longcmd);
+    bool precheck(const std::string& name, const std::string& shortcmd, const std::string& longcmd);
     void postcheck();
     void help();
 
     Callback help_callback;
-    map<string, Argument*> args;
+    std::map<std::string, Argument*> args; // Use std::map, not just map
 
-    string name;
-    string description;
+    std::string name;
+    std::string description;
 
     bool defaultHelp = true;
 };

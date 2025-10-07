@@ -2,13 +2,13 @@
 #include <typedef.h>
 #include <stdexcept>
 
-DoubleArgument::DoubleArgument(const string& _name, const string& _shortcmd,  const string& _longcmd, const string& _help, double defaultval) 
+DoubleArgument::DoubleArgument(const std::string& _name, const std::string& _shortcmd,  const std::string& _longcmd, const std::string& _help, double defaultval) 
     : Argument(_name, _shortcmd, _longcmd, _help, true), 
         defaultvalue(defaultval), value(defaultval){
 
 }
 
-ArgStatus DoubleArgument::loadValue(const string& arg, int pos){
+ArgStatus DoubleArgument::loadValue(const std::string& arg, int pos){
 
     found();
 
