@@ -1,34 +1,50 @@
+
+/**
+ * @file typedef.h
+ * @brief Common typedefs and enums for argument parser library.
+ * @author Pankaja Suganda
+ * @date 2025-10-07
+ */
 #ifndef _ARGPARSER_TYPEDEFS_H_
 #define _ARGPARSER_TYPEDEFS_H_
 
+/**
+ * @def UNUSED(x)
+ * @brief Macro to suppress unused variable warnings.
+ */
 #define UNUSED(x) static_cast<void>(arg)
 
+/**
+ * @enum ArgStatus
+ * @brief Status codes for argument parsing and errors.
+ */
 typedef enum{
-    /* success status*/
-    PARSER_OK  = 0,
-    PARSE_DEFAULT_HELP_OK = 1,
+    PARSER_OK  = 0,                  /**< Success. */
+    PARSE_DEFAULT_HELP_OK = 1,       /**< Help output triggered. */
 
-    /* error status*/
-    PARSER_ERROR = -1,
-    PARSER_INPUT_VALID_ERROR = -2,
-    PARSER_ARG_VALUE_NOT_FOUND = -3,
-    PARSER_INVALID_ARGUMENT = -4,
-    PARSER_OUT_OF_RANGE = -5,
-    PARSER_ADDING_FAILED = -6,
-    PARSER_ARG_UNKNOWN = -7,
+    PARSER_ERROR = -1,               /**< General error. */
+    PARSER_INPUT_VALID_ERROR = -2,   /**< Invalid input. */
+    PARSER_ARG_VALUE_NOT_FOUND = -3, /**< Argument value missing. */
+    PARSER_INVALID_ARGUMENT = -4,    /**< Invalid argument. */
+    PARSER_OUT_OF_RANGE = -5,        /**< Value out of range. */
+    PARSER_ADDING_FAILED = -6,       /**< Failed to add argument. */
+    PARSER_ARG_UNKNOWN = -7,         /**< Unknown argument. */
 
-    /* redefinitions */
-    PARSER_ARG_FOUND     = PARSER_OK,
-    PARSER_ARG_NOT_FOUND = PARSER_ERROR
+    PARSER_ARG_FOUND     = PARSER_OK,    /**< Redefinition: found. */
+    PARSER_ARG_NOT_FOUND = PARSER_ERROR  /**< Redefinition: not found. */
 } ArgStatus;
 
+/**
+ * @enum ArgType
+ * @brief Supported argument types.
+ */
 typedef enum{
-    ARG_NONE_TYPE,
-    ARG_FLAG_TYPE,
-    ARG_INT_TYPE,
-    ARG_DOUBLE_TYPE,
-    ARG_STRING_TYPE,
-    ARG_PATH_TYPE
+    ARG_NONE_TYPE,    /**< No type. */
+    ARG_FLAG_TYPE,    /**< Boolean flag. */
+    ARG_INT_TYPE,     /**< Integer. */
+    ARG_DOUBLE_TYPE,  /**< Double/float. */
+    ARG_STRING_TYPE,  /**< String. */
+    ARG_PATH_TYPE     /**< Path (not implemented). */
 } ArgType;
 
 #endif // !_ARGPARSER_TYPEDEFS_H_

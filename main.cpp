@@ -24,9 +24,9 @@ int main(int argc, char* argv[]) {
     ret = parser.parse(argc, argv);
 
     // checking whether the default help is triggered
-    if(ret == PARSE_DEFAULT_HELP_OK){
-        return 0;
-    }
+    // if(ret == PARSE_DEFAULT_HELP_OK){
+    //     return 0;
+    // }
 
     if(ret < PARSER_OK){
         printf("Error: Error occured (%d)\n", ret);

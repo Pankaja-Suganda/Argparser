@@ -1,0 +1,35 @@
+# Doxyfile.in - template for Doxygen configuration
+# Configure with CMake to fill @DOXYGEN_OUTPUT_DIR@ and @DOXYGEN_INPUT@
+
+PROJECT_NAME           = "Argparser"
+PROJECT_NUMBER         = "@PROJECT_VERSION@"
+OUTPUT_DIRECTORY       = "@DOXYGEN_OUTPUT_DIR@"
+CREATE_SUBDIRS         = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+RECURSIVE              = YES
+INPUT                  = @DOXYGEN_INPUT@
+FILE_PATTERNS          = *.h *.hpp *.hxx *.cpp *.cxx *.cc *.c
+GENERATE_HTML          = YES
+GENERATE_XML           = YES
+GENERATE_LATEX         = NO
+GENERATE_MAN           = NO
+QUIET                  = NO
+GENERATE_TREEVIEW      = YES
+
+# Enable dot only if available
+HAVE_DOT               = NO
+DOT_GRAPH_MAX_NODES    = 50
+
+# Use Markdown support
+MARKDOWN_SUPPORT       = YES
+
+# Use source browser
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# Strip the CMake build dir prefixes
+STRIP_FROM_PATH        = @CMAKE_CURRENT_SOURCE_DIR@
