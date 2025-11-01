@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <argparser.h>
+#include <string.h>
 
 // Function to calculate the volume of a rectangular box given its dimensions
 double calculateBoxVolume(double length, double width, double depth) {
@@ -19,6 +20,7 @@ int main(int argc, char* argv[]) {
     parser.addArgument("width",   "-w", "--width",   "Width of the box",      0.0);
     parser.addArgument("depth",   "-d", "--depth",   "Depth of the box",      0.0);
     parser.addArgument("verbose", "-v", "--verbose", "Enable verbose output", false);
+    parser.addArgument("tstr",    "-s", "--string",  "Test string", "Test");
 
     // Parse command-line arguments
     ret = parser.parse(argc, argv);
@@ -34,10 +36,15 @@ int main(int argc, char* argv[]) {
     }
 
     // Retrieve values
+    std::string test_str = parser.get<std::string>("tstr");
     double length = parser.get<double>("length");
     double width  = parser.get<double>("width");
     double depth  = parser.get<double>("depth");
     bool verbose  = parser.get<bool>("verbose");
+
+    if (parser.argExists("tstr")) {
+        printf("String Test Value %s\n", test_str.c_str());
+    }
 
     // Check if the provided dimensions are valid
     if (parser.argExists("length") && parser.argExists("width") && parser.argExists("depth")) {

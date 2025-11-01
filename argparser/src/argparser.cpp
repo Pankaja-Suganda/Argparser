@@ -235,7 +235,7 @@ ArgStatus ArgParser::parse(int argc, char* argv[]){
     Argument* prev = nullptr;
     ArgStatus ret = PARSER_OK;
 
-    if(defaultHelp){
+    if(argc > 1 && defaultHelp){
         if(strcmp(argv[1], LONG_HELPCMD) == PARSER_OK || strcmp(argv[1], SHORT_HELPCMD) == PARSER_OK){
             help();
             return PARSE_DEFAULT_HELP_OK;
