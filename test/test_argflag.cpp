@@ -27,7 +27,7 @@ TEST(FlagArgParserTest, FlagArgumentSCMDTrueTest) {
     ArgParser parser;
 
     // Valid command line arguments
-    char* argv[] = { (char*)"program_name", (char*)"-a"};
+    char* argv[] = { (char*)"program_name", (char*)"-b"};
     int argc = sizeof(argv) / sizeof(argv[0]);
 
     // Add an argument with a default value

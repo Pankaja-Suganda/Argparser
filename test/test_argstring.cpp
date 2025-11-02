@@ -32,14 +32,14 @@ TEST(StringArgParserTest, StringArgumentSCMDTest) {
     ASSERT_EQ(ArgStatus::PARSER_OK, parser.addArgument("stringArg", "-s", "--string", "String argument test", "Default String"));
 
     // get value should be default value
-    ASSERT_EQ(parser.get<string>("stringArg"), "Default String");
+    ASSERT_EQ(parser.get<std::string>("stringArg"), "Default String");
 
     // Parse the arguments
     ASSERT_EQ(ArgStatus::PARSER_OK, parser.parse(argc, argv));
 
     // get value should be default value
-    ASSERT_EQ(parser.get<string>("stringArg"), "Default String");
-    ASSERT_NE(parser.get<string>("stringArg"), "Wrong argument");
+    ASSERT_EQ(parser.get<std::string>("stringArg"), "Default String");
+    ASSERT_NE(parser.get<std::string>("stringArg"), "Wrong argument");
 }
 
 TEST(StringArgParserTest, StringArgumentSCMDFalseTest) {
@@ -53,13 +53,13 @@ TEST(StringArgParserTest, StringArgumentSCMDFalseTest) {
     ASSERT_EQ(ArgStatus::PARSER_OK, parser.addArgument("stringArg", "-s", "--string", "String argument test", "Default String"));
 
     // get value should be default value
-    ASSERT_EQ(parser.get<string>("stringArg"), "Default String");
+    ASSERT_EQ(parser.get<std::string>("stringArg"), "Default String");
 
     // Parse the arguments
     ASSERT_EQ(ArgStatus::PARSER_OK, parser.parse(argc, argv));
 
     // get value should be default value
-    ASSERT_NE(parser.get<string>("stringArg"), "Default String");
-    ASSERT_EQ(parser.get<string>("stringArg"), "This is the correct string");
+    ASSERT_NE(parser.get<std::string>("stringArg"), "Default String");
+    ASSERT_EQ(parser.get<std::string>("stringArg"), "This is the correct string");
 }
 

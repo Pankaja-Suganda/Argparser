@@ -24,7 +24,7 @@ TEST(ArgParserTest, MainTest) {
     ASSERT_EQ(parser.get<bool>("boolArg"),     false);
     ASSERT_EQ(parser.get<int>("intArg"),       12);
     ASSERT_EQ(parser.get<double>("doubleArg"), 12.23);
-    ASSERT_EQ(parser.get<string>("strArg"),    "This is a string argument");
+    ASSERT_EQ(parser.get<std::string>("strArg"),    "This is a string argument");
 
     // parsing
     // Valid command line arguments
@@ -42,7 +42,7 @@ TEST(ArgParserTest, MainTest) {
     ASSERT_EQ(parser.get<bool>("boolArg"),     true);
     ASSERT_EQ(parser.get<int>("intArg"),       123);
     ASSERT_EQ(parser.get<double>("doubleArg"), 65.343);
-    ASSERT_EQ(parser.get<string>("strArg"),    "Hello World");
+    ASSERT_EQ(parser.get<std::string>("strArg"),    "Hello World");
 
     // Check if arguments exist
     ASSERT_TRUE(parser.argExists("boolArg"));
